@@ -1,9 +1,33 @@
-﻿
+﻿@using DayTasksPrioritizer.Models
+
+@model List<TaskModel>
+
 @{
     ViewBag.Title = "Dienos užduočių prioretizavimas";
+    int index = 0;
 }
 
-<h2>Suveskite dienos užduotis</h2>
+<div style="text-align: center;">
 
-<p>Dienos užduotis 1<p>
-<p> užduotis 2</p>
+    <h2>Suveskite dienos užduotis</h2>
+
+    @foreach (var task in Model)
+    {
+        @:<p><input id="@index" placeholder="@task.Name" /><p>
+}
+    <input id="btnPrioritaze" type="submit" value="Prioretizuoti" />
+
+
+
+
+
+</div>
+
+
+<script>
+    $("#btnPrioritaze").prop("disabled", "disabled");
+
+
+</script>
+
+
