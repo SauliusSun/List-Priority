@@ -1,33 +1,65 @@
-﻿@using DayTasksPrioritizer.Models
+﻿@using System.Threading.Tasks
+@using DayTasksPrioritizer.Models
 
 @model List<TaskModel>
 
 @{
     ViewBag.Title = "Dienos užduočių prioretizavimas";
-    int index = 0;
+    int taskIndex = 1;
 }
 
 <div style="text-align: center;">
 
     <h2>Suveskite dienos užduotis</h2>
+    <ul data-role="listview">
+        @foreach (var task in Model)
+        {
+            @: <li><input id="@taskIndex" type="text" placeholder="@task.Name" />
+            taskIndex++;
+        }
+    </ul>
 
-    @foreach (var task in Model)
-    {
-        @:<p><input id="@index" placeholder="@task.Name" /><p>
-}
-    <input id="btnPrioritaze" type="submit" value="Prioretizuoti" />
 
-
-
-
+<input id="btnPrioritaze" disabled="disabled" type="submit" value="Prioretizuoti" />
 
 </div>
 
 
 <script>
-    $("#btnPrioritaze").prop("disabled", "disabled");
+
+    $(function() {
+
+        var taskIndex = parseInt("@Model.Count") + 1;
+        var tasksEntered = 0;
+
+        $("ul").on("focus", "li:last input", function () {
+
+            $("ul").append("<li><input id=" + taskIndex + " type='text' placeholder='Dienos užduotis " + taskIndex + "' </li>");
+            taskIndex++;
+
+            if (IsTasksEntered(tasksEntered))
+                $("#btnPrioritaze").removeAttr("disabled");
+
+        });
 
 
+
+    });
+
+
+    function IsTasksEntered(tasksEntered) {
+        $("li input").each(function() {
+            if ($(this).val() != 0) {
+                tasksEntered++;
+            }
+        });
+
+        if (tasksEntered >= 2)
+            return true;
+
+        return false;
+    }
+    
 </script>
 
 
