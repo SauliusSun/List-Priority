@@ -29,9 +29,33 @@ namespace DayTasksPrioritizer.Controllers
                 Priority = 0
             });
 
-
-
             return View(tasksModel);
         }
+
+        //[HttpPost]
+        public ActionResult Prioritize(List<string> tasks)
+        {
+            var tasksModel = new TasksModel();
+            tasksModel.TasksList = new List<TaskModel>();
+
+            foreach (var task in tasks)
+            {
+                if (task != "")
+                {
+                    tasksModel.TasksList.Add(new TaskModel()
+                    {
+                        Name = task,
+                        Priority = 0
+                    });
+                }
+            }
+            return Json(View(tasksModel));
+           // return View("Prioritize", tasksModel);
+        }
+
+        //public ActionResult Prioritize(TasksModel tasks)
+        //{
+        //    return View(tasks);
+        //}
 	}
 }

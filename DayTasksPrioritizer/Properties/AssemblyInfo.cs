@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("DayTasksPrioritizer")]
-[assembly: AssemblyCopyright("Copyright © Saulius Šunauskas 2013")]
+[assembly: AssemblyCopyright("Copyright © 2013 Saulius Šunauskas")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
