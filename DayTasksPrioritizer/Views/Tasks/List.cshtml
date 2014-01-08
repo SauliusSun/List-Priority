@@ -1,0 +1,15 @@
+﻿@model DayTasksPrioritizer.Models.TasksModel
+
+@{
+    ViewBag.Title = "Dienos užduočių sąrašas pagal prioritetą";
+    int position = 0;
+}
+
+<h2>Dienos užduočių sąrašas pagal prioritetą</h2>
+
+<ul>
+    @foreach (var task in Model.TasksList)
+    {
+        <li>@(++position). @task.Name</li>
+    }
+</ul>

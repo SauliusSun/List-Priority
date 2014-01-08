@@ -1,5 +1,4 @@
-﻿
-@using DayTasksPrioritizer.Models
+﻿@using DayTasksPrioritizer.Models
 
 @model List<TaskModel>
 
@@ -8,22 +7,23 @@
     int taskIndex = 1;
 }
 
+<form id="formId" action="@Url.Action("Prepare", "Tasks")" method="POST">
+
 <div style="text-align: center;">
 
     <h2>Suveskite dienos užduotis</h2>
     <ul data-role="listview">
         @foreach (var task in Model)
         {
-            @: <li><input id="@taskIndex" type="text" placeholder="@task.Name" />
+            @: <li><input id="@taskIndex" type="text" name="tasks" placeholder="@task.Name" />
             taskIndex++;
         }
     </ul>
-
-
-<input id="btnPrioritaze" onclick="Prioritize()" disabled="disabled" type="submit" value="Prioretizuoti" />
-
+    
+    <input id="btnPrioritaze" disabled="disabled" type="submit" value="Prioretizuoti" />
 </div>
-
+    
+    </form>
 
 <script>
 
@@ -34,7 +34,7 @@
 
         $("ul").on("focus", "li:last input", function () {
 
-            $("ul").append("<li><input id=" + taskIndex + " type='text' placeholder='Dienos užduotis " + taskIndex + "' </li>");
+            $("ul").append("<li><input id=" + taskIndex + " type='text' name='tasks' placeholder='Dienos užduotis " + taskIndex + "' </li>");
             taskIndex++;
 
             if (IsTasksEntered(tasksEntered))
@@ -63,25 +63,17 @@
     function Prioritize() {
 
         var taskArray = new Array();
-
         var taskIndex = 0;
+
         $("li input").each(function () {
 
             taskArray[taskIndex] = $(this).val();
-
             taskIndex++;
         });
 
-        var tasks = { tasks: taskArray };
+      //  var tasks = { tasks: taskArray };
 
-        $.ajax({
-            type: "post",
-            url: "@Url.Action("Prioritize", "Tasks")",
-            data: JSON.stringify(tasks),
-            dataType: "json",
-            contentType: "application/json; charset=utf-8",
-        });
-
+    
     }
     
 </script>

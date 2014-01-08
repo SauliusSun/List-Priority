@@ -1,9 +1,13 @@
-﻿@*@using DayTasksPrioritizer.Models;
-@model TasksModel*@
+﻿@using DayTasksPrioritizer.Models;
+
+@model KeyValuePair<int, List<TaskModel>>
 
 @{
     ViewBag.Title = "Prioritize";
 }
+ 
+<h2>Kas svarbiau?</h2>
 
-<h2>Prioritize</h2>
-
+<a id="@Model.Key" type="button" href="@Url.Action("Prioritize", "Tasks", new { sequance = Model.Key, taskName = Model.Value[0].Name })">@Model.Value[0].Name</a>
+ar
+<a id="@Model.Key" type="button" href="@Url.Action("Prioritize", "Tasks", new { sequance = Model.Key, taskName = Model.Value[1].Name })">@Model.Value[1].Name</a>
