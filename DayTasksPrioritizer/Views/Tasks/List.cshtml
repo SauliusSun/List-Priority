@@ -8,7 +8,7 @@
 <h2>Dienos užduočių sąrašas pagal prioritetą</h2>
 
 <ul>
-    @foreach (var task in Model.TasksList)
+    @foreach (var task in Model.TasksList.OrderByDescending(t => t.Priority))
     {
         <li>@(++position). @task.Name</li>
     }
