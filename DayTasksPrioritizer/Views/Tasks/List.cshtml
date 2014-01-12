@@ -1,15 +1,40 @@
-﻿@model DayTasksPrioritizer.Models.TasksModel
+﻿@using DayTasksPrioritizer.Models
+
+@model TasksModel
 
 @{
-    ViewBag.Title = "Dienos užduočių sąrašas pagal prioritetą";
+    ViewBag.Title = "Tikslai (užduotys, darbai) pagal prioritetą";
     int position = 0;
 }
 
-<h2>Dienos užduočių sąrašas pagal prioritetą</h2>
+<h2>Tikslai (užduotys, darbai) pagal prioritetą</h2>
 
-<ul>
-    @foreach (var task in Model.TasksList.OrderByDescending(t => t.Priority))
-    {
-        <li>@(++position). @task.Name</li>
-    }
-</ul>
+<form id="formId" action="@Url.Action("Index", "Tasks")" method="POST">
+
+    <ul>
+        @foreach (var task in Model.TasksList.OrderByDescending(t => t.Priority))
+        {
+            <li>@(++position). @task.Name</li>
+            <input type="hidden" name="goals" value="@task.Name" />
+        }
+    </ul>
+
+    <br />
+
+    <a type="button" href="javascript:document.title='Tikslai (užduotys, darbai) pagal prioritetą';window.print();">Spausdinti</a> |
+    <a id="addMoreGoals" type="submit" href="#">Papildyti</a> |
+    <a type="button" href="@Url.Action("Index", "Tasks")">Pradėti iš naujo</a>
+</form>
+
+<script>
+    $(function () {
+
+        $("#addMoreGoals").click(function (event) {
+            
+            event.preventDefault();
+            $("#formId").submit();
+
+        });
+
+    });
+</script>

@@ -7,26 +7,49 @@ namespace DayTasksPrioritizer.Controllers
 {
     public class TasksController : Controller
     {
+        [HttpGet]
         public ActionResult Index()
         {
-            var tasksModel = new List<TaskModel>
-            {
-                new TaskModel()
+           
+                //var tasksModel = new TasksModel
+                //{
+                //    TasksList = new List<TaskModel>()
+                //    {
+                //        new TaskModel()
+                //        {
+                //            Name = "Dienos užduotis 1",
+                //            Priority = 0
+                //        },
+                //        new TaskModel()
+                //        {
+                //            Name = "Dienos užduotis 2",
+                //            Priority = 0
+                //        },
+                //        new TaskModel()
+                //        {
+                //            Name = "Dienos užduotis 3",
+                //            Priority = 0
+                //        }
+                //    }
+                //};
+            var tasksModel = new TasksModel {TasksList = new List<TaskModel>()};
+
+                return View(tasksModel);
+            }
+
+        [HttpPost]
+        public ActionResult Index(List<string> goals)
+        {
+            var tasksModel = new TasksModel { TasksList = new List<TaskModel>() };
+
+            foreach (string goal in goals)
+                tasksModel.TasksList.Add(new TaskModel()
                 {
-                    Name = "Dienos užduotis 1",
+                    Name = goal,
                     Priority = 0
-                },
-                new TaskModel()
-                {
-                    Name = "Dienos užduotis 2",
-                    Priority = 0
-                },
-                new TaskModel()
-                {
-                    Name = "Dienos užduotis 3",
-                    Priority = 0
-                }
-            };
+                });
+
+           // tasksModel.TasksList.Add(new TaskModel("", 0));
 
             return View(tasksModel);
         }

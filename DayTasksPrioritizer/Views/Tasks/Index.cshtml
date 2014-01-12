@@ -1,9 +1,9 @@
 ﻿@using DayTasksPrioritizer.Models
 
-@model List<TaskModel>
+@model TasksModel
 
 @{
-    ViewBag.Title = "Dienos užduočių prioretizavimas";
+    ViewBag.Title = "Prioritetai padeda siekti tikslų";
     int taskIndex = 1;
 }
 
@@ -11,16 +11,16 @@
 
 <div style="text-align: center;">
 
-    <h2>Suveskite dienos užduotis</h2>
+    <h2>Siek tikslų, įvesk tikslus (užduotis, darbus)</h2>
     <ul data-role="listview">
-        @foreach (var task in Model)
+        @foreach (var task in Model.TasksList)
         {
-            @: <li><input id="@taskIndex" type="text" name="tasks" placeholder="@task.Name" />
+            @: <li><input id="@taskIndex" type="text" name="tasks" value="@task.Name" />
             taskIndex++;
         }
     </ul>
     
-    <input id="btnPrioritaze" disabled="disabled" type="submit" value="Prioretizuoti" />
+    <input id="btnPrioritaze" disabled="disabled" type="submit" value="Prioretizuoti!" />
 </div>
     
     </form>
@@ -29,20 +29,27 @@
 
     $(function() {
 
-        var taskIndex = parseInt("@Model.Count") + 1;
+        var taskIndex = parseInt("@Model.TasksList.Count") + 1;
         var tasksEntered = 0;
+        
+       // if (taskIndex == 1) {
+            $("ul").append("<li><input id=" + taskIndex + " type='text' name='tasks' placeholder='Tikslas " + taskIndex + "' </li>");
+            taskIndex++;
+      //  } 
+            
+        
+        //for (var i = 0; i < ta; i++) {
+        //    $("ul").append("<li><input id=" + taskIndex + " type='text' name='tasks' placeholder='Tikslas " + i + "' </li>");
+        //}
 
         $("ul").on("focus", "li:last input", function () {
 
-            $("ul").append("<li><input id=" + taskIndex + " type='text' name='tasks' placeholder='Dienos užduotis " + taskIndex + "' </li>");
+            $("ul").append("<li><input id=" + taskIndex + " type='text' name='tasks' placeholder='Tikslas " + taskIndex + "' </li>");
             taskIndex++;
 
             if (IsTasksEntered(tasksEntered))
                 $("#btnPrioritaze").removeAttr("disabled");
-
         });
-
-
 
     });
 
@@ -71,9 +78,6 @@
             taskIndex++;
         });
 
-      //  var tasks = { tasks: taskArray };
-
-    
     }
     
 </script>
