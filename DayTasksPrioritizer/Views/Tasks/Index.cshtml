@@ -12,15 +12,15 @@
 <div style="text-align: center;">
 
     <h2>Siek tikslų, įvesk tikslus (užduotis, darbus)</h2>
-    <ul data-role="listview">
+    <ul class="list-group">
         @foreach (var task in Model.TasksList)
         {
             @: <li><input id="@taskIndex" type="text" name="tasks" value="@task.Name" />
             taskIndex++;
         }
-    </ul>
+</ul>
     
-    <input id="btnPrioritaze" disabled="disabled" type="submit" value="Prioretizuoti!" />
+    <input id="btnPrioritaze" class="btn btn-success btn-sm" disabled="disabled" type="submit" value="Prioretizuoti!" />
 </div>
     
     </form>

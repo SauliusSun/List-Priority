@@ -7,23 +7,25 @@
     int position = 0;
 }
 
-<h2>Tikslai (užduotys, darbai) pagal prioritetą</h2>
+<h2 style="text-align: center;">TIKSLAI PAGAL PRIORITETĄ</h2>
 
 <form id="formId" action="@Url.Action("Index", "Tasks")" method="POST">
 
-    <ul>
+    <ul class="list-group">
         @foreach (var task in Model.TasksList.OrderByDescending(t => t.Priority))
-        {
-            <li>@(++position). @task.Name</li>
+{
+    <li class="list-group-item">@(++position). @task.Name</li>
             <input type="hidden" name="goals" value="@task.Name" />
         }
     </ul>
 
     <br />
-
-    <a type="button" href="javascript:document.title='Tikslai (užduotys, darbai) pagal prioritetą';window.print();">Spausdinti</a> |
-    <a id="addMoreGoals" type="submit" href="#">Papildyti</a> |
-    <a type="button" href="@Url.Action("Index", "Tasks")">Pradėti iš naujo</a>
+    
+    <div class="btn-group">
+        <a type="button" class="btn btn-default btn-sm" href="javascript:document.title='Tikslai (užduotys, darbai) pagal prioritetą';window.print();">SPAUSDINTI</a> 
+        <a id="addMoreGoals" class="btn btn-default btn-sm" type="submit" href="#">PAPILDYTI</a> 
+        <a type="button" class="btn btn-default btn-sm" href="@Url.Action("Index", "Tasks")">PRADĖTI IŠ NAUJO</a>
+    </div>
 </form>
 
 <script>
