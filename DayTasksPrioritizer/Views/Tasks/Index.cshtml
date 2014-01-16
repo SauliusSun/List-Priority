@@ -27,42 +27,50 @@
 
 <script>
 
-    $(function() {
+    $(function () {
 
         var taskIndex = parseInt("@Model.TasksList.Count") + 1;
-        var tasksEntered = 0;
-        
-       // if (taskIndex == 1) {
-            $("ul").append("<li><input id=" + taskIndex + " type='text' name='tasks' placeholder='Tikslas " + taskIndex + "' </li>");
-            taskIndex++;
-      //  } 
-            
-        
-        //for (var i = 0; i < ta; i++) {
-        //    $("ul").append("<li><input id=" + taskIndex + " type='text' name='tasks' placeholder='Tikslas " + i + "' </li>");
-        //}
+
+        if (IsTasksEntered())
+            $("#btnPrioritaze").removeAttr("disabled");
+        else
+            $("#btnPrioritaze").prop("disabled", true);
+
+        $("ul").append("<li><input id=" + taskIndex + " type='text' name='tasks' placeholder='Tikslas " + taskIndex + "' </li>");
+        taskIndex++;
 
         $("ul").on("focus", "li:last input", function () {
 
             $("ul").append("<li><input id=" + taskIndex + " type='text' name='tasks' placeholder='Tikslas " + taskIndex + "' </li>");
             taskIndex++;
 
-            if (IsTasksEntered(tasksEntered))
+        });
+
+        $("ul").on("keyup", "li input", function () {
+
+            if (IsTasksEntered())
                 $("#btnPrioritaze").removeAttr("disabled");
+            else
+                $("#btnPrioritaze").prop("disabled", true);
+
         });
 
     });
 
 
-    function IsTasksEntered(tasksEntered) {
-        $("li input").each(function() {
+    function IsTasksEntered() {
+
+        var tasksEntered = 0;
+
+        $("li input").each(function () {
             if ($(this).val() != "") {
                 tasksEntered++;
             }
         });
 
-        if (tasksEntered >= 2)
+        if (tasksEntered >= 2) {
             return true;
+        }
 
         return false;
     }
@@ -79,7 +87,7 @@
         });
 
     }
-    
+
 </script>
 
 
