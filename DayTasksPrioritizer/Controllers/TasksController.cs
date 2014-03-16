@@ -10,28 +10,6 @@ namespace DayTasksPrioritizer.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-           
-                //var tasksModel = new TasksModel
-                //{
-                //    TasksList = new List<TaskModel>()
-                //    {
-                //        new TaskModel()
-                //        {
-                //            Name = "Dienos užduotis 1",
-                //            Priority = 0
-                //        },
-                //        new TaskModel()
-                //        {
-                //            Name = "Dienos užduotis 2",
-                //            Priority = 0
-                //        },
-                //        new TaskModel()
-                //        {
-                //            Name = "Dienos užduotis 3",
-                //            Priority = 0
-                //        }
-                //    }
-                //};
             var tasksModel = new TasksModel {TasksList = new List<TaskModel>()};
 
                 return View(tasksModel);
@@ -48,8 +26,6 @@ namespace DayTasksPrioritizer.Controllers
                     Name = goal,
                     Priority = 0
                 });
-
-           // tasksModel.TasksList.Add(new TaskModel("", 0));
 
             return View(tasksModel);
         }
