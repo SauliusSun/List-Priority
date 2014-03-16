@@ -3,7 +3,7 @@
 @model TasksModel
 
 @{
-    ViewBag.Title = "Prioritetai padeda siekti tikslų";
+    ViewBag.Title = "Seek goals, prioritize";
     int taskIndex = 1;
 }
 
@@ -11,7 +11,7 @@
 
 <div style="text-align: center;">
 
-    <h2>Siek tikslų, įvesk tikslus (užduotis, darbus)</h2>
+    <h2>Seek goals, prioritize</h2>
     <ul class="list-group">
         @foreach (var task in Model.TasksList)
         {
@@ -20,7 +20,7 @@
         }
 </ul>
     
-    <input id="btnPrioritaze" class="btn btn-success btn-sm" disabled="disabled" type="submit" value="Prioretizuoti!" />
+    <input id="btnPrioritaze" class="btn btn-success btn-sm" disabled="disabled" type="submit" value="Prioritize!" />
 </div>
     
     </form>
@@ -36,12 +36,12 @@
         else
             $("#btnPrioritaze").prop("disabled", true);
 
-        $("ul").append("<li><input id=" + taskIndex + " type='text' name='tasks' placeholder='Tikslas " + taskIndex + "' </li>");
+        $("ul").append("<li><input id=" + taskIndex + " type='text' name='tasks' placeholder='Goal " + taskIndex + "' </li>");
         taskIndex++;
 
         $("ul").on("focus", "li:last input", function () {
 
-            $("ul").append("<li><input id=" + taskIndex + " type='text' name='tasks' placeholder='Tikslas " + taskIndex + "' </li>");
+            $("ul").append("<li><input id=" + taskIndex + " type='text' name='tasks' placeholder='Goal " + taskIndex + "' </li>");
             taskIndex++;
 
         });

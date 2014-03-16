@@ -3,11 +3,11 @@
 @model TasksModel
 
 @{
-    ViewBag.Title = "Tikslai (užduotys, darbai) pagal prioritetą";
+    ViewBag.Title = "Seek goals, prioritize";
     int position = 0;
 }
 
-<h2 style="text-align: center;">TIKSLAI PAGAL PRIORITETĄ</h2>
+<h2 style="text-align: center;">GOALS BY PRIORITY</h2>
 
 <form id="formId" action="@Url.Action("Index", "Tasks")" method="POST">
 
@@ -22,9 +22,9 @@
     <br />
     
     <div class="btn-group">
-        <a type="button" class="btn btn-default btn-sm" href="javascript:document.title='Tikslai (užduotys, darbai) pagal prioritetą';window.print();">SPAUSDINTI</a> 
-        <a id="addMoreGoals" class="btn btn-default btn-sm" type="submit" href="#">PAPILDYTI</a> 
-        <a type="button" class="btn btn-default btn-sm" href="@Url.Action("Index", "Tasks")">PRADĖTI IŠ NAUJO</a>
+        <a type="button" class="btn btn-default btn-sm" href="javascript:document.title='Goals by priority';window.print();">PRINT</a> 
+        <a id="addMoreGoals" class="btn btn-default btn-sm" type="submit" href="#">ADD MORE</a> 
+        <a type="button" class="btn btn-default btn-sm" href="@Url.Action("Index", "Tasks")">FRESH START</a>
     </div>
 </form>
 

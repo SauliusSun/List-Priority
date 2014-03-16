@@ -7,9 +7,9 @@
 }
  
 <div style="text-align: center;">
-    <h2>Kas svarbiau?</h2>
+    <h2>What is more important?</h2>
 
     <a id="@Model.Key" type="button" href="@Url.Action("Prioritize", "Tasks", new { sequance = Model.Key, taskName = Model.Value[0].Name })">@Model.Value[0].Name</a>
-    ar
+    or
     <a id="@Model.Key" type="button" href="@Url.Action("Prioritize", "Tasks", new { sequance = Model.Key, taskName = Model.Value[1].Name })">@Model.Value[1].Name</a>
 </div>
